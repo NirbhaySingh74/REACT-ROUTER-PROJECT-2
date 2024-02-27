@@ -36,7 +36,7 @@ function ProductDetail() {
             <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
               <p className="text-lg font-semibold">${productData.price}</p>
               <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out mt-4 sm:mt-0">
-                Buy Now
+                Add To Cart
               </button>
             </div>
           </div>

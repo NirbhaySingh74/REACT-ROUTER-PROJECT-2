@@ -49,7 +49,7 @@ const Body = () => {
                     </div>
                     <p className="text-xl font-semibold">${item.price}</p>
                     <button className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">
-                      Buy Now
+                      Add To Cart
                     </button>
                   </div>
                 </div>
