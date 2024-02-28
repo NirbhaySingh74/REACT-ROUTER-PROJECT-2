@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
-
+import { useDispatch } from "react-redux";
+import { addProduct } from "../utils/cartSlice";
 const Body = () => {
   const [data, setData] = useState(null);
-
+  const dispatch = useDispatch();
+  const addProductData = (item) => {
+    dispatch(addProduct(item));
+    console.log("store subscribed");
+  };
   async function getData() {
     try {
       const result = await fetch("https://fakestoreapi.com/products");
@@ -27,8 +32,8 @@ const Body = () => {
         <div className="flex flex-wrap justify-center m-4">
           {data.map((item) => (
             <div key={item.id} className="m-3" style={{ minWidth: "300px" }}>
-              <Link to={`products/${item.id}`}>
-                <div className="w-64 h-full shadow-lg cursor-pointer flex flex-col justify-center items-center rounded-sm p-4 bg-white flex-shrink-0">
+              <div className="w-64 h-full shadow-lg cursor-pointer flex flex-col justify-center items-center rounded-sm p-4 bg-white flex-shrink-0">
+                <Link to={`products/${item.id}`} className="w-full">
                   <img
                     src={item.image}
                     alt=""
@@ -48,12 +53,17 @@ const Body = () => {
                       </div>
                     </div>
                     <p className="text-xl font-semibold">${item.price}</p>
-                    <button className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">
-                      Add To Cart
-                    </button>
                   </div>
+                </Link>
+                <div className="w-full mt-4">
+                  <button
+                    className="bg-blue-500 text-white w-full px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out"
+                    onClick={() => addProductData(item)}
+                  >
+                    Add To Cart
+                  </button>
                 </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const productData = useSelector((store) => store.cart.items);
   return (
     <div className="flex justify-between bg-blue-100 p-2 text-black">
       <div className="w-1/4">
@@ -15,7 +17,7 @@ const Header = () => {
         <li>Home</li>
         <li>About</li>
         <Link to="/cart">
-          <li>Cart</li>
+          <li>Cart({productData.length})</li>
         </Link>
       </ul>
     </div>
